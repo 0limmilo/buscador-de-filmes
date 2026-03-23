@@ -1,17 +1,20 @@
 body{
     background: #242448;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color:aliceblue;
+    align-items: flex-start; /* 🆕 flex-start para não cortar o grid */
+    color: aliceblue;
     font-family: system-ui, -apple-system, sans-serif;
+    padding: 40px 20px;
 }
 
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 900px;
 }
 
 .search-group {
@@ -84,25 +87,48 @@ body{
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* 🆕 Grid de filmes */
 #resultado {
-    margin-top: 30px;
-    text-align: center;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
 }
 
-#resultado img {
-    margin-top: 15px;
-    width: 220px;
+/* 🆕 Card individual */
+.filme-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    transition: transform 0.25s ease;
+    padding: 12px;
+    transition: transform 0.25s ease, background 0.25s ease;
 }
 
-#resultado img:hover {
-    transform: scale(1.04);
+.filme-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-#resultado p {
-    margin: 6px 0;
-    font-size: 15px;
-    opacity: 0.9;
+.filme-card img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+}
+
+.filme-titulo {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.filme-ano {
+    font-size: 12px;
+    opacity: 0.55;
+    margin: 2px 0 0;
 }

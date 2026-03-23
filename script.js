@@ -8,11 +8,12 @@ async function buscarFilme(){
     const date = await ress.json();
 
     const result = document.getElementById("resultado");
-    result.innerHTML = `
-        <p>${date.titulo}</p>
-        <p>${date.genero}</p>
-        <img src="${date.Imagem}">
-        <p>${date.avaliacao}</p>
-    `;
+    result.innerHTML = date.map(filme => `
+        <div class="filme-card">
+            <img src="${filme.imagem}">
+            <p class="filme-titulo">${filme.titulo}</p>
+            <p class="filme-ano">${filme.ano}</p>
+        </div>
+    `).join("")
 
 }

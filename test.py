@@ -8,7 +8,7 @@ chave = os.getenv("CHAVE")
 
 filme = "Spider-Man"
 
-URL = f"https://www.omdbapi.com/?t={filme}&apikey={chave}"
+URL = f"https://www.omdbapi.com/?s={filme}&apikey={chave}"
 
 ress = requests.get(URL)
 date = ress.json()

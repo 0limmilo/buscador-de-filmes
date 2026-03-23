@@ -21,23 +21,22 @@ def buscar_filme():
     if not filme:
         return jsonify({"erro": "Envie o nome do filme"}), 400
 
-    url = f"https://www.omdbapi.com/?t={filme}&apikey={chave}"
+    url = f"https://www.omdbapi.com/?s={filme}&apikey={chave}"
     ress = requests.get(url)
     date = ress.json()
     
-    title = f"{date["Title"]}"
-    genre = f"{date["Genre"]}"
-    img = f"{date["Poster"]}"
-    rating = f"{date["Ratings"][0]["Source"]} : { date["Ratings"][0]["Value"]}"
+    filmes = date["Search"]
 
-    return jsonify({
-        "titulo": title,
-        "genero": genre,
-        "Imagem": img,
-        "avaliacao": rating
-    })
-    
+    result = []
+
+    for filme in filmes[:5]:
+        result.append({
+            "titulo": filme["Title"],
+            "ano": filme["Year"],
+            "imagem": filme["Poster"]
+        })    
         
+    return jsonify(result)
 
 if __name__ == "__main__":
     app.run(debug=True)
